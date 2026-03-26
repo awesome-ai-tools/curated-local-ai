@@ -1,0 +1,47 @@
+name: Add a Tool
+description: Suggest a new tool to add to the list
+title: "[Add]: "
+labels: ["addition"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Tool Name
+      placeholder: e.g., Ollama
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      placeholder: https://github.com/owner/repo
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Inference Engines
+        - Desktop & Web UIs
+        - Model Hubs & Formats
+        - Quantization Tools
+        - Fine-tuning
+        - Local RAG
+        - Voice & Speech
+        - Image Generation
+        - Hardware Guides
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      placeholder: Brief description of the tool (one sentence)
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: License
+      placeholder: e.g., MIT, Apache-2.0
