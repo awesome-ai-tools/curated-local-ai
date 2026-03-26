@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Curated Local AI - Tools for Running AI Models Locally</title>
+  <meta name="description" content="A curated, searchable list of tools for running AI models locally -- inference engines, UIs, quantization, fine-tuning, RAG, and more."/>
+  <style>
+    :root {
+      --bg: #0f0c29;
+      --bg2: #1a1640;
+      --card: #1e1a3a;
+      --accent: #00d2ff;
+      --accent2: #7b2ff7;
+      --text: #e2e8f0;
+      --muted: #718096;
+      --border: #2d2b55;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    header p { color: var(--muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto 20px; }
+    .featured {
+      background: linear-gradient(135deg, rgba(0,210,255,0.08), rgba(123,47,247,0.08));
+      border: 1px solid rgba(0,210,255,0.2);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 30px auto;
+      max-width: 700px;
+      text-align: left;
+    }
+    .featured h3 { color: var(--accent); margin-bottom: 8px; }
+    .featured h3 a { color: var(--accent); text-decoration: none; }
+    .featured h3 a:hover { text-decoration: underline; }
+    .featured p { color: var(--muted); font-size: 0.95rem; }
+    .featured .badges { margin-top: 12px; }
+    .featured .badges a {
+      display: inline-block;
+      background: var(--bg);
+      color: var(--accent);
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      margin-right: 8px;
+      border: 1px solid var(--border);
+    }
+    .featured .badges a:hover { border-color: var(--accent); }
+    .controls {
+      padding: 30px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      padding: 12px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-box:focus { border-color: var(--accent); }
+    .search-box::placeholder { color: var(--muted); }
+    .filter-btn {
+      padding: 8px 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--accent2);
+      color: #fff;
+      border-color: var(--accent2);
+    }
+    .category { margin-bottom: 40px; }
+    .category h2 {
+      font-size: 1.4rem;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--border);
+      color: var(--text);
+    }
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .tool-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .tool-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .tool-card h3 { margin-bottom: 6px; }
+    .tool-card h3 a {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .tool-card h3 a:hover { text-decoration: underline; }
+    .tool-card p { color: var(--muted); font-size: 0.9rem; }
+    .tool-card .meta {
+      margin-top: 10px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: rgba(0,210,255,0.1);
+      color: var(--accent);
+      border: 1px solid rgba(0,210,255,0.2);
+    }
+    .hidden { display: none !important; }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .submit-section {
+      text-align: center;
+      padding: 40px 20px;
+      background: var(--bg2);
+      border-radius: 12px;
+      margin: 40px 0;
+    }
+    .submit-section h2 { margin-bottom: 12px; }
+    .submit-btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+    .count { color: var(--muted); font-size: 0.85rem; margin-left: 8px; }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      .tool-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Curated Local AI</h1>
+  <p>A curated, searchable list of tools for running AI models locally -- inference engines, UIs, quantization, fine-tuning, RAG, and more.</p>
+  <a href="https://github.com/awesome-ai-tools/curated-local-ai" style="color:var(--accent);text-decoration:none;font-size:0.9rem;">View on GitHub</a>
+
+  <div class="featured">
+    <h3><a href="https://www.ssemble.com">Ssemble AI Clipping</a> -- Featured</h3>
+    <p>Turn long videos into viral shorts with AI. Automatically finds the best moments and creates clips optimized for TikTok, YouTube Shorts, and Instagram Reels.</p>
+    <div class="badges">
+      <a href="https://www.npmjs.com/package/@ssemble/mcp-server">MCP Server</a>
+      <a href="https://www.ssemble.com">ssemble.com</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <div class="controls">
+    <input type="text" class="search-box" id="search" placeholder="Search tools..." autocomplete="off"/>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="inference">Inference</button>
+    <button class="filter-btn" data-filter="ui">UIs</button>
+    <button class="filter-btn" data-filter="hubs">Model Hubs</button>
+    <button class="filter-btn" data-filter="quantization">Quantization</button>
+    <button class="filter-btn" data-filter="finetune">Fine-tuning</button>
+    <button class="filter-btn" data-filter="rag">RAG</button>
+    <button class="filter-btn" data-filter="voice">Voice</button>
+    <button class="filter-btn" data-filter="image">Image Gen</button>
+    <button class="filter-btn" data-filter="hardware">Hardware</button>
+  </div>
+
+  <div id="tools">
+
+    <div class="category" data-cat="inference">
+      <h2>Inference Engines <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://github.com/ollama/ollama">Ollama</a></h3><p>Get up and running with large language models locally. Simple CLI with model management.</p><div class="meta"><span class="tag">macOS</span><span class="tag">Linux</span><span class="tag">Windows</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a></h3><p>LLM inference in C/C++. The foundational project for GGUF-based local inference.</p><div class="meta"><span class="tag">Cross-platform</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/vllm-project/vllm">vLLM</a></h3><p>High-throughput and memory-efficient inference and serving engine for LLMs.</p><div class="meta"><span class="tag">Linux</span><span class="tag">Apache-2.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/NVIDIA/TensorRT-LLM">TensorRT-LLM</a></h3><p>NVIDIA's library for optimizing LLM inference on NVIDIA GPUs.</p><div class="meta"><span class="tag">NVIDIA</span><span class="tag">Apache-2.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/ml-explore/mlx">MLX</a></h3><p>Array framework for machine learning on Apple silicon, by Apple.</p><div class="meta"><span class="tag">Apple Silicon</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/mlc-ai/mlc-llm">MLC LLM</a></h3><p>Universal LLM deployment engine with ML compilation.</p><div class="meta"><span class="tag">Cross-platform</span><span class="tag">Apache-2.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/turboderp/exllamav2">ExLlamaV2</a></h3><p>Fast inference library for running LLMs locally on modern consumer GPUs.</p><div class="meta"><span class="tag">Linux</span><span class="tag">Windows</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/mudler/LocalAI">LocalAI</a></h3><p>Drop-in replacement REST API compatible with OpenAI. No GPU required.</p><div class="meta"><span class="tag">Cross-platform</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/Mozilla-Ocho/llamafile">Llamafile</a></h3><p>Distribute and run LLMs with a single file. By Mozilla.</p><div class="meta"><span class="tag">Cross-platform</span><span class="tag">Apache-2.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/huggingface/candle">candle</a></h3><p>Minimalist ML framework for Rust with a focus on performance.</p><div class="meta"><span class="tag">Cross-platform</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/abetlen/llama-cpp-python">llama-cpp-python</a></h3><p>Python bindings for llama.cpp with OpenAI-compatible API server.</p><div class="meta"><span class="tag">Cross-platform</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/InternLM/lmdeploy">LMDeploy</a></h3><p>Toolkit for compressing, deploying, and serving LLMs with high throughput.</p><div class="meta"><span class="tag">Linux</span><span class="tag">Apache-2.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/sgl-project/sglang">SGLang</a></h3><p>Fast serving framework for large language and vision models.</p><div class="meta"><span class="tag">Linux</span><span class="tag">Apache-2.0</span></div></div>
+      </div>
+    </div>
+
+    <div class="category" data-cat="ui">
+      <h2>Desktop & Web UIs <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://github.com/open-webui/open-webui">Open WebUI</a></h3><p>Feature-rich, self-hosted web UI for LLMs. Supports Ollama and OpenAI-compatible APIs.</p><div class="meta"><span class="tag">Self-hosted</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://lmstudio.ai/">LM Studio</a></h3><p>Desktop app to discover, download, and run local LLMs.</p><div class="meta"><span class="tag">Desktop</span><span class="tag">Free</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/nomic-ai/gpt4all">GPT4All</a></h3><p>Open-source large language model chatbot ecosystem. Run models entirely offline.</p><div class="meta"><span class="tag">Desktop</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/janhq/jan">Jan</a></h3><p>Open-source alternative to ChatGPT that runs 100% offline.</p><div class="meta"><span class="tag">Desktop</span><span class="tag">AGPL-3.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/oobabooga/text-generation-webui">Text Generation WebUI</a></h3><p>Gradio-based web UI for running large language models.</p><div class="meta"><span class="tag">Self-hosted</span><span class="tag">AGPL-3.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/LostRuins/koboldcpp">KoboldCpp</a></h3><p>Easy-to-use AI text generation with GGUF support.</p><div class="meta"><span class="tag">Desktop</span><span class="tag">AGPL-3.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/SillyTavern/SillyTavern">SillyTavern</a></h3><p>LLM frontend for power users with advanced character features.</p><div class="meta"><span class="tag">Self-hosted</span><span class="tag">AGPL-3.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/Mintplex-Labs/anything-llm">AnythingLLM</a></h3><p>All-in-one desktop and Docker AI app with built-in RAG and agents.</p><div class="meta"><span class="tag">Desktop</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/Bin-Huang/chatbox">Chatbox</a></h3><p>Desktop client for ChatGPT, Claude, and local models.</p><div class="meta"><span class="tag">Desktop</span><span class="tag">GPL-3.0</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/danny-avila/LibreChat">LibreChat</a></h3><p>Enhanced ChatGPT clone supporting many AI providers.</p><div class="meta"><span class="tag">Self-hosted</span><span class="tag">MIT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/lobehub/lobe-chat">Lobe Chat</a></h3><p>Modern-design ChatGPT/LLM UI with Ollama support.</p><div class="meta"><span class="tag">Self-hosted</span><span class="tag">MIT</span></div></div>
+      </div>
+    </div>
+
+    <div class="category" data-cat="hubs">
+      <h2>Model Hubs & Formats <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://huggingface.co/models">Hugging Face Hub</a></h3><p>The largest open-source ML model repository.</p><div class="meta"><span class="tag">Model Hub</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/ggerganov/ggml/blob/master/docs/gguf.md">GGUF Format</a></h3><p>Binary format for fast loading and saving of models used by llama.cpp.</p><div class="meta"><span class="tag">Format</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/ggerganov/ggml">GGML</a></h3><p>Tensor library for ML. Foundation behind GGUF and llama.cpp.</p><div class="meta"><span class="tag">Library</span></div></div>
+        <div class="tool-card"><h3><a href="https://ollama.com/library">Ollama Library</a></h3><p>Curated models optimized and packaged for Ollama.</p><div class="meta"><span class="tag">Model Library</span></div></div>
+        <div class="tool-card"><h3><a href="https://huggingface.co/TheBloke">TheBloke</a></h3><p>GGUF, GPTQ, and AWQ versions of popular models.</p><div class="meta"><span class="tag">Quantized Models</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/huggingface/safetensors">SafeTensors</a></h3><p>Safe way to store and distribute tensors by Hugging Face.</p><div class="meta"><span class="tag">Format</span></div></div>
+      </div>
+    </div>
+
+    <div class="category" data-cat="quantization">
+      <h2>Quantization Tools <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://github.com/IST-DASLab/gptq">GPTQ</a></h3><p>Accurate post-training quantization for generative pre-trained transformers.</p><div class="meta"><span class="tag">4-bit</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/AutoGPTQ/AutoGPTQ">AutoGPTQ</a></h3><p>Easy-to-use LLM quantization package with user-friendly APIs.</p><div class="meta"><span class="tag">4-bit</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/mit-han-lab/llm-awq">AWQ</a></h3><p>Activation-aware weight quantization for efficient LLM compression.</p><div class="meta"><span class="tag">4-bit</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/bitsandbytes-foundation/bitsandbytes">bitsandbytes</a></h3><p>Lightweight CUDA wrapper for 8-bit and 4-bit quantization.</p><div class="meta"><span class="tag">4/8-bit</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/artidoro/qlora">QLoRA</a></h3><p>Efficient finetuning of quantized LLMs.</p><div class="meta"><span class="tag">Fine-tune</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/mobiusml/hqq">HQQ</a></h3><p>Half-Quadratic Quantization -- fast and accurate.</p><div class="meta"><span class="tag">Post-training</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/Cornell-RelaxML/quip-sharp">QuIP#</a></h3><p>Extreme LLM compression with incoherence processing.</p><div class="meta"><span class="tag">2-bit</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/Vahe1994/AQLM">AQLM</a></h3><p>State-of-the-art additive quantization for 2-bit compression.</p><div class="meta"><span class="tag">2-bit</span></div></div>
+      </div>
+    </div>
+
+    <div class="category" data-cat="finetune">
+      <h2>Fine-tuning <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://github.com/unslothai/unsloth">Unsloth</a></h3><p>Finetune LLMs 2-5x faster with 80% less memory.</p><div class="meta"><span class="tag">LoRA</span><span class="tag">QLoRA</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/axolotl-ai-cloud/axolotl">Axolotl</a></h3><p>Streamlined tool for fine-tuning LLMs with many methods.</p><div class="meta"><span class="tag">Full</span><span class="tag">LoRA</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/hiyouga/LLaMA-Factory">LLaMA-Factory</a></h3><p>Unified framework for fine-tuning 100+ LLMs with a web UI.</p><div class="meta"><span class="tag">Full</span><span class="tag">LoRA</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/huggingface/peft">PEFT</a></h3><p>Parameter-Efficient Fine-Tuning by Hugging Face.</p><div class="meta"><span class="tag">LoRA</span><span class="tag">Adapters</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/huggingface/trl">TRL</a></h3><p>Transformer Reinforcement Learning: RLHF, DPO, PPO.</p><div class="meta"><span class="tag">RLHF</span><span class="tag">DPO</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/pytorch/torchtune">torchtune</a></h3><p>PyTorch-native library for LLM fine-tuning.</p><div class="meta"><span class="tag">Full</span><span class="tag">LoRA</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/Lightning-AI/litgpt">LitGPT</a></h3><p>Pretrain, finetune, and deploy 20+ LLMs. By Lightning AI.</p><div class="meta"><span class="tag">Full</span><span class="tag">LoRA</span></div></div>
+      </div>
+    </div>
+
+    <div class="category" data-cat="rag">
+      <h2>Local RAG <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://github.com/zylon-ai/private-gpt">PrivateGPT</a></h3><p>Interact with your documents using LLMs, 100% privately.</p><div class="meta"><span class="tag">Ollama</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/QuivrHQ/quivr">Quivr</a></h3><p>Your second brain, powered by generative AI.</p><div class="meta"><span class="tag">Multiple</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/PromtEngineer/localGPT">LocalGPT</a></h3><p>Chat with your documents on your local device.</p><div class="meta"><span class="tag">HuggingFace</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/khoj-ai/khoj">Khoj</a></h3><p>Personal AI assistant for notes, documents, and images.</p><div class="meta"><span class="tag">Multiple</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/infiniflow/ragflow">RAGFlow</a></h3><p>Open-source RAG engine based on deep document understanding.</p><div class="meta"><span class="tag">Multiple</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/Cinnamon/kotaemon">kotaemon</a></h3><p>Clean, customizable RAG UI for chatting with your documents.</p><div class="meta"><span class="tag">Multiple</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/deepset-ai/haystack">Haystack</a></h3><p>LLM orchestration for RAG, agents, and search pipelines.</p><div class="meta"><span class="tag">Multiple</span></div></div>
+      </div>
+    </div>
+
+    <div class="category" data-cat="voice">
+      <h2>Voice & Speech <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://github.com/ggerganov/whisper.cpp">Whisper.cpp</a></h3><p>High-performance inference of OpenAI's Whisper in C/C++.</p><div class="meta"><span class="tag">STT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/rhasspy/piper">Piper</a></h3><p>Fast, local neural text-to-speech. Optimized for Raspberry Pi.</p><div class="meta"><span class="tag">TTS</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/coqui-ai/TTS">Coqui TTS</a></h3><p>Deep learning toolkit for text-to-speech with many voices.</p><div class="meta"><span class="tag">TTS</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/suno-ai/bark">Bark</a></h3><p>Text-prompted generative audio model by Suno.</p><div class="meta"><span class="tag">Audio</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/SYSTRAN/faster-whisper">faster-whisper</a></h3><p>Whisper reimplementation using CTranslate2, up to 4x faster.</p><div class="meta"><span class="tag">STT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/alphacep/vosk-api">Vosk</a></h3><p>Offline speech recognition supporting 20+ languages.</p><div class="meta"><span class="tag">STT</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/yl4579/StyleTTS2">StyleTTS 2</a></h3><p>Human-level TTS through style diffusion.</p><div class="meta"><span class="tag">TTS</span></div></div>
+      </div>
+    </div>
+
+    <div class="category" data-cat="image">
+      <h2>Image Generation <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI</a></h3><p>Modular Stable Diffusion GUI with node-based workflow.</p><div class="meta"><span class="tag">PyTorch</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">Automatic1111</a></h3><p>The most popular Stable Diffusion web UI.</p><div class="meta"><span class="tag">PyTorch</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/lllyasviel/Fooocus">Fooocus</a></h3><p>Offline, open source Midjourney-like experience.</p><div class="meta"><span class="tag">PyTorch</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/invoke-ai/InvokeAI">InvokeAI</a></h3><p>Professional creative engine with polished node-based UI.</p><div class="meta"><span class="tag">PyTorch</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/lllyasviel/stable-diffusion-webui-forge">Forge</a></h3><p>Optimized A1111 fork with better memory management.</p><div class="meta"><span class="tag">PyTorch</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/black-forest-labs/flux">FLUX.1</a></h3><p>State-of-the-art text-to-image model by Black Forest Labs.</p><div class="meta"><span class="tag">PyTorch</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/kohya-ss/sd-scripts">kohya-ss</a></h3><p>Training scripts for LoRA, DreamBooth, and textual inversion.</p><div class="meta"><span class="tag">PyTorch</span></div></div>
+      </div>
+    </div>
+
+    <div class="category" data-cat="hardware">
+      <h2>Hardware Guides <span class="count"></span></h2>
+      <div class="tool-grid">
+        <div class="tool-card"><h3><a href="https://github.com/XiongjieDai/GPU-Benchmarks-on-LLM-Inference">GPU Benchmarks</a></h3><p>Comprehensive GPU benchmarks for local LLM inference.</p><div class="meta"><span class="tag">Benchmarks</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/ml-explore/mlx-examples">MLX Benchmarks</a></h3><p>Apple Silicon performance examples and benchmarks.</p><div class="meta"><span class="tag">Apple Silicon</span></div></div>
+        <div class="tool-card"><h3><a href="https://github.com/ROCm/ROCm">AMD ROCm</a></h3><p>AMD's open-source GPU computing platform for ML.</p><div class="meta"><span class="tag">AMD</span></div></div>
+        <div class="tool-card"><h3><a href="https://developer.nvidia.com/rtx-ai-toolkit">RTX AI Toolkit</a></h3><p>NVIDIA's toolkit for AI on RTX GPUs.</p><div class="meta"><span class="tag">NVIDIA</span></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="submit-section">
+    <h2>Want to add a tool?</h2>
+    <p style="color:var(--muted);margin-bottom:20px;">Submit a pull request or open an issue on GitHub.</p>
+    <a class="submit-btn" href="https://github.com/awesome-ai-tools/curated-local-ai/issues/new?template=add-tool.yml">Submit a Tool</a>
+  </div>
+</div>
+
+<footer>
+  <p>Curated with care by the <a href="https://github.com/awesome-ai-tools">awesome-ai-tools</a> community.</p>
+  <p style="margin-top:8px;"><a href="https://github.com/awesome-ai-tools/curated-local-ai">GitHub</a> &middot; <a href="https://github.com/awesome-ai-tools/curated-local-ai/blob/main/LICENSE">MIT License</a></p>
+</footer>
+
+<script>
+  const searchInput = document.getElementById('search');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const categories = document.querySelectorAll('.category');
+  let activeFilter = 'all';
+
+  // Update counts
+  categories.forEach(cat => {
+    const count = cat.querySelectorAll('.tool-card').length;
+    cat.querySelector('.count').textContent = '(' + count + ')';
+  });
+
+  searchInput.addEventListener('input', applyFilters);
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      applyFilters();
+    });
+  });
+
+  function applyFilters() {
+    const query = searchInput.value.toLowerCase().trim();
+    categories.forEach(cat => {
+      const catName = cat.dataset.cat;
+      const cards = cat.querySelectorAll('.tool-card');
+      let visibleCount = 0;
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        const matchesSearch = !query || text.includes(query);
+        const matchesFilter = activeFilter === 'all' || catName === activeFilter;
+        if (matchesSearch && matchesFilter) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      if (activeFilter !== 'all' && catName !== activeFilter) {
+        cat.classList.add('hidden');
+      } else if (visibleCount === 0 && query) {
+        cat.classList.add('hidden');
+      } else {
+        cat.classList.remove('hidden');
+      }
+      cat.querySelector('.count').textContent = '(' + visibleCount + ')';
+    });
+  }
+</script>
+</body>
+</html>
