@@ -1,0 +1,24 @@
+name: Report Broken Link
+description: Report a broken or incorrect link
+title: "[Broken Link]: "
+labels: ["broken-link"]
+body:
+  - type: input
+    id: tool
+    attributes:
+      label: Tool Name
+      placeholder: Name of the tool with the broken link
+    validations:
+      required: true
+  - type: input
+    id: broken_url
+    attributes:
+      label: Broken URL
+      placeholder: https://...
+    validations:
+      required: true
+  - type: input
+    id: correct_url
+    attributes:
+      label: Correct URL (if known)
+      placeholder: https://...
