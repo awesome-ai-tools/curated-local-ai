@@ -100,6 +100,7 @@ User-friendly interfaces for interacting with local models.
 | [Chatbox](https://github.com/Bin-Huang/chatbox) | Desktop client for ChatGPT, Claude, and local models (Ollama). | macOS, Windows, Linux | GPL-3.0 |
 | [LibreChat](https://github.com/danny-avila/LibreChat) | Enhanced ChatGPT clone supporting many AI providers including local models. | Web (Self-hosted) | MIT |
 | [Lobe Chat](https://github.com/lobehub/lobe-chat) | Modern-design ChatGPT/LLM UI framework supporting Ollama and local providers. | Web (Self-hosted) | MIT |
+| [Typer](https://typer.space) | Free local AI chat for macOS. No account, no cloud, no ads. Works fully offline. On-device web search included. | macOS (Apple Silicon) | Proprietary (Free) |
 
 <p align="right"><a href="#contents">Back to top</a></p>
 
