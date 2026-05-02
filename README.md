@@ -90,6 +90,7 @@ User-friendly interfaces for interacting with local models.
 |------|-------------|----------|---------|
 | [Open WebUI](https://github.com/open-webui/open-webui) | Feature-rich, self-hosted web UI for LLMs. Supports Ollama and OpenAI-compatible APIs. | Web (Self-hosted) | MIT |
 | [LM Studio](https://lmstudio.ai/) | Desktop app to discover, download, and run local LLMs. Built-in chat and server. | macOS, Windows, Linux | Proprietary (Free) |
+| [Marklet](https://github.com/kuiperzone/Marklet-AI) | Alt-AI native desktop client primarily intended for use with local models. Personal AI in the way a PC was once personal (Currently preview release) | Linux, Windows (future macOS) | AGPL-3.0 |
 | [GPT4All](https://github.com/nomic-ai/gpt4all) | Open-source large language model chatbot ecosystem. Run models entirely offline. | macOS, Windows, Linux | MIT |
 | [Jan](https://github.com/janhq/jan) | Open-source alternative to ChatGPT that runs 100% offline on your computer. | macOS, Windows, Linux | AGPL-3.0 |
 | [Msty](https://msty.app/) | Desktop AI chat app supporting multiple local and online models. | macOS, Windows, Linux | Proprietary (Free) |
