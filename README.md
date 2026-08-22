@@ -89,6 +89,7 @@ User-friendly interfaces for interacting with local models.
 | Tool | Description | Platform | License |
 |------|-------------|----------|---------|
 | [Open WebUI](https://github.com/open-webui/open-webui) | Feature-rich, self-hosted web UI for LLMs. Supports Ollama and OpenAI-compatible APIs. | Web (Self-hosted) | MIT |
+| [Orkas](https://github.com/Orkas-AI/Orkas) | Open-source, local-first desktop AI workforce with a Commander coordinating specialist agents through one chat and local model endpoints. | macOS, Windows, Linux | MIT |
 | [LM Studio](https://lmstudio.ai/) | Desktop app to discover, download, and run local LLMs. Built-in chat and server. | macOS, Windows, Linux | Proprietary (Free) |
 | [GPT4All](https://github.com/nomic-ai/gpt4all) | Open-source large language model chatbot ecosystem. Run models entirely offline. | macOS, Windows, Linux | MIT |
 | [Jan](https://github.com/janhq/jan) | Open-source alternative to ChatGPT that runs 100% offline on your computer. | macOS, Windows, Linux | AGPL-3.0 |
