@@ -209,6 +209,7 @@ Local speech recognition, text-to-speech, and voice assistants.
 | [StyleTTS 2](https://github.com/yl4579/StyleTTS2) | Human-level text-to-speech through style diffusion and adversarial training. | Text-to-Speech |
 | [XTTS](https://github.com/coqui-ai/TTS) | Cross-lingual voice cloning and text-to-speech from Coqui. Clone with 6 seconds of audio. | Text-to-Speech |
 | [Silero Models](https://github.com/snakers4/silero-models) | Pre-trained speech-to-text, text-to-speech, and text enhancement models. | STT/TTS |
+| [Local Video Text](https://github.com/phoenix110/local-video-text) | Browser-based English video transcription; one selected video is processed locally in the browser without upload to the site server. | Web |
 
 <p align="right"><a href="#contents">Back to top</a></p>
 
