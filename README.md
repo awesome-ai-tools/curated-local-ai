@@ -251,6 +251,7 @@ Optimize your local AI setup with the right hardware.
 | [AMD ROCm](https://github.com/ROCm/ROCm) | AMD's open-source software platform for GPU computing. Supports many ML frameworks. | AMD GPU |
 | [Vulkan Backend (llama.cpp)](https://github.com/ggerganov/llama.cpp/blob/master/docs/backend/VULKAN.md) | Guide for using the Vulkan backend for cross-GPU support in llama.cpp. | Cross-GPU |
 | [Local AI Hardware Guide (Reddit)](https://www.reddit.com/r/LocalLLaMA/wiki/index/) | Community-maintained wiki with hardware recommendations for local LLMs. | General |
+| [Qwen3.8 Local Deployment Guide](https://github.com/xiaoxianxian/qwen3.8-deployment) | Step-by-step Mac/Apple Silicon deployment of Qwen3.8-27B via Ollama with benchmarks. | macOS (Apple Silicon) | MIT |
 
 <p align="right"><a href="#contents">Back to top</a></p>
 
