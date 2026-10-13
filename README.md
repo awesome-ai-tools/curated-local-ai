@@ -244,6 +244,7 @@ Optimize your local AI setup with the right hardware.
 |----------|-------------|-------|
 | [GPU Benchmarks for LLMs](https://github.com/XiongjieDai/GPU-Benchmarks-on-LLM-Inference) | Comprehensive benchmarks of GPUs for local LLM inference performance. | GPU Comparison |
 | [Apple Silicon GPU Guide](https://github.com/ggerganov/llama.cpp/discussions/4167) | Discussion and benchmarks for running llama.cpp on Apple Silicon Macs. | Apple Silicon |
+| [GraphicCardPrices local-LLM GPU guide](https://graphiccardprices.com/local-llm-gpu-guide/) | Beginner GPU buying guide with memory-tier shortcuts and dated Amazon US New/Used quotes, plus an adjustable VRAM planning calculator. | GPU Buying |
 | [llama.cpp Hardware Compat](https://github.com/ggerganov/llama.cpp#supported-backends) | Official list of supported hardware backends for llama.cpp. | Compatibility |
 | [MLX Benchmarks](https://github.com/ml-explore/mlx-examples) | Performance examples and benchmarks for Apple Silicon ML workloads. | Apple Silicon |
 | [VRAM Calculator](https://huggingface.co/spaces/NyxKrage/LLM-Model-VRAM-Calculator) | Calculate the VRAM requirements for running various LLM models. | Memory Planning |
