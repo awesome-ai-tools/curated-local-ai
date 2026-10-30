@@ -247,6 +247,7 @@ Optimize your local AI setup with the right hardware.
 | [llama.cpp Hardware Compat](https://github.com/ggerganov/llama.cpp#supported-backends) | Official list of supported hardware backends for llama.cpp. | Compatibility |
 | [MLX Benchmarks](https://github.com/ml-explore/mlx-examples) | Performance examples and benchmarks for Apple Silicon ML workloads. | Apple Silicon |
 | [VRAM Calculator](https://huggingface.co/spaces/NyxKrage/LLM-Model-VRAM-Calculator) | Calculate the VRAM requirements for running various LLM models. | Memory Planning |
+| [LocalForge Fit Finder](https://localai.hexmobius.com/en?utm_source=curated-local-ai&utm_medium=directory&utm_campaign=backlink) | Named-machine fit finder: which local models fit a given Mac, GPU or CPU tier, with runtime paths and caveats. | Memory Planning |
 | [RTX AI Toolkit](https://developer.nvidia.com/rtx-ai-toolkit) | NVIDIA's toolkit for optimizing and deploying AI models on RTX GPUs. | NVIDIA RTX |
 | [AMD ROCm](https://github.com/ROCm/ROCm) | AMD's open-source software platform for GPU computing. Supports many ML frameworks. | AMD GPU |
 | [Vulkan Backend (llama.cpp)](https://github.com/ggerganov/llama.cpp/blob/master/docs/backend/VULKAN.md) | Guide for using the Vulkan backend for cross-GPU support in llama.cpp. | Cross-GPU |
